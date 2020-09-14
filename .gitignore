@@ -1,0 +1,7 @@
+keyfile.json
+scratch*
+venv/
+.idea/
+*.ipynb
+__pycache__/
+data_examples/
