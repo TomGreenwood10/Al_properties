@@ -85,6 +85,7 @@ class Read:
     """
     Class for reading from database
     """
+    pass
 
 
 class Delete:
@@ -94,3 +95,5 @@ class Delete:
         docs = col_ref.limit(500).stream()
         for doc in docs:
             doc.reference.delete()
+
+pd.
