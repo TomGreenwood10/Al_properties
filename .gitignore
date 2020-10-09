@@ -5,3 +5,4 @@ venv/
 *.ipynb
 __pycache__/
 data_examples/
+.vscode/

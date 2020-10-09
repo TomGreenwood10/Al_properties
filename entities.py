@@ -1,5 +1,5 @@
 """
-Module containing classes that represent singe results or sets of results that
+Module containing classes that represent single results or sets of results that
 are obtained at once.  E.g. the several results that come from one test bar
 
 Also classes to represent a result
@@ -33,6 +33,8 @@ class ProofStress(Measurement):
     """
     Object representing a single Proof stress measurement.
     """
+    name = 'proof_stress'
+
     def __init__(self, value: float = None, percent: float = None, **kwargs):
         self.percent = percent
         super().__init__(value, **kwargs)
@@ -45,6 +47,8 @@ class Uts(Measurement):
     """
     Object representing a single ultimate tensile strength (UTS) measurement.
     """
+    name = 'uts'
+
     def __init__(self, value: float = None, **kwargs):
         super().__init__(value, **kwargs)
 
@@ -56,6 +60,8 @@ class Elongation(Measurement):
     """
     Object representing a single elongation result.
     """
+    name = 'elongation'
+
     def __init__(self, value: float = None, **kwargs):
         super().__init__(value, **kwargs)
 
@@ -93,3 +99,10 @@ class Properties:
             else:
                 rtn_dict[attr] = getattr(self, attr)
         return rtn_dict
+    
+    @staticmethod
+    def from_measurements(*measurements):
+        rtn_obj = Properties()
+        for measurement in measurements:
+            setattr(rtn_obj, measurement.name, measurement)
+        return rtn_obj
