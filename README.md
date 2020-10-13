@@ -40,24 +40,16 @@ the `Properties` class to collect all data from the row (the measured
 properties) and other metadata e.g. temper.
 
 #### Object mappers
-**Individual properties:**
-* `ProofStress`
-* `Uts`
-* `Elongation`
+The overall concept of this application resolved around the Table object class.
+When importing into the database a Table object is created from the set of
+results to import then the write_to_db() method writes all the information to 
+google firestore. The Table class deals with the formatting of the data so that
+it forms the corect document schema.  Therefore the Table object serves as the
+middle man between the raw data and the database.
 
-*Note: These all inherit from the `Measurement` base class.
-
-All have `to_dict()` which will give a dictionary format ready to be nested in
-the document.  *Note: use `to_dict()` instead of `__dict__` as it will exclude
-keys with None values.
-
-These should all be collected in a `Properties` object where the `to_dict()` 
-method will give the full dictionary ready to be imported directly as a 
-document.
-
-
-### Write function
-In the crud module. The `Write` class is used to import csv tables or pandas 
-dataframes directly with the `from_dataframe()` or `from_csv()` static methods
-respectively. It performs batch import and will currently fail if rows exceed 
-500 (firestore document limit for batch import).
+Table objects represent a table of results with one or more rows. Contained
+are Properties objects that represent single rows and inside them are 
+individual measurement objects which represent each individual measurement.
+The main reason for using objects rather that direct import from the data is so
+that meta data can be held and inserted into database documents which are not
+necessarily in every row or the raw data, e.g. units or measurement method.
