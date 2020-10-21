@@ -52,8 +52,8 @@ the data so that it forms the corect document schema.  Therefore the `Table`
 object serves as the middle man between the raw data and the database.
 
 `Table` objects represent a `Table` of results with one or more rows. Contained
-are Properties objects that represent single rows and inside them are 
-individual measurement objects which represent each individual measurement.
+are `Properties` objects that represent single rows and inside them are 
+individual `Measurement` objects which represent each individual measurement.
 The main reason for using objects rather that direct import from the data is so
 that meta data can be held and inserted into database documents which are not
 necessarily in every row or the raw data, e.g. units or measurement method.
